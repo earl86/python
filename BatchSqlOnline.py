@@ -76,8 +76,8 @@ def readlinesql(dbserverlist):
     with open(args.sqlfile, 'r') as f:
         f = f.readlines()
         for line in f:
-            sql = sql + line.strip('\n') + ' '
-            if line.strip('\n').endswith(';'):
+            sql = sql + line.strip('\n').rstrip() + ' '
+            if line.strip('\n').rstrip().endswith(';'):
                  print '++++++++++++execsql++++++++++++' + sql
                  try:
                      pool = Pool()

@@ -39,8 +39,8 @@ class Reader(Thread):
             for line in f:
                 if line[0:3] == codecs.BOM_UTF8:
                     line=line.rstrip('\r\n').lstrip('\xef\xbb\xbf')
-                sql = sql + line.strip('\n') + ' '
-                if line.strip('\n').endswith(';'):
+                sql = sql + line.strip('\n').rstrip() + ' '
+                if line.strip('\n').rstrip().endswith(';'):
                     #print('++++++++++++execsql++++++++++++' + sql)
                     self.__sqlqueue.put(sql)
                     sql = ''
